@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-center flex-grow">
-    <div v-if="!isLoading" class="container has-text-centered l">
+    <div class="container has-text-centered l">
       <div class="column is-4 is-offset-4">
         <figure class="image mw6">
           <img src="@/assets/pusheen-computer.png" />
@@ -60,22 +60,13 @@
         </p>
       </div>
     </div>
-    <div v-else>
-      <loading-screen></loading-screen>
-    </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import { Footerbar } from "@/components/layout/";
-import LoadingScreen from "../components/LoadingScreen";
 export default {
   name: "login",
-  components: {
-    Footerbar,
-    LoadingScreen
-  },
   data() {
     return {
       isLoading: false,
@@ -90,22 +81,16 @@ export default {
     loginUser: function(e) {
       this.isLoading = true;
       var redirect = this.$auth.redirect();
-      this.$auth
-        .login({
-          data: this.login,
-          rememberMe: this.login.rememberMe,
-          redirect: { name: "Chat" },
-          fetchUser: true
-        })
-        .then(
-          () => {
-            // this.$router.push({ name: "Chat" });
-            console.log("Login success");
-          },
-          res => {
-            console.log("Error");
-          }
-        );
+      this.$auth.login({
+        data: this.login,
+        rememberMe: this.login.rememberMe,
+        error: function() {
+          // TODO add UX
+          console.log(arguments, "Failed to login");
+        },
+        redirect: { name: "Chat" },
+        fetchUser: true
+      });
     }
   }
 };

@@ -77,8 +77,7 @@ export default {
         this.sendMessage({
           id: uuidv4(),
           type: "TEXT",
-          message: this.inputText,
-          author: "ME",
+          author: this.$auth.user().id,
           payload: { text: this.inputText }
         });
       this.inputText = "";

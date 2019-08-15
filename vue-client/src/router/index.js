@@ -9,11 +9,14 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: "/",
+      redirect: { name: "Chat" }
+    },
+    {
       path: "/login",
       name: "Login",
       component: () => import("@/views/Login.vue"),
-      meta: { auth: false },
-      hidden: true
+      meta: { auth: false }
     },
     {
       path: "/@",
@@ -35,9 +38,9 @@ export default new Router({
           props: true
         }
       ]
-    }
+    },
     // { path: '/authredirect', component: _import('login/authredirect'), hidden: true },
-    // { path: '/404', component: _import('errorPage/404'), hidden: true },
+    { path: "/404", redirect: { name: "Chat" } }
     // { path: '/401', component: _import('errorPage/401'), hidden: true }
   ]
 });

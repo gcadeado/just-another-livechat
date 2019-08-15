@@ -4,15 +4,33 @@
 // To use Phoenix channels, the first step is to import Socket
 // and connect at the socket path in "lib/web/endpoint.ex":
 import { Socket } from "phoenix-socket";
+import Vue from "vue";
 
-export const socket = new Socket("ws://localhost:4000/socket", {
-  params: { token: window.userToken }
-});
+export default class PhoenixSocket {
+  socket;
+  channels = {};
+  socketUrl = "ws://localhost:4000/socket";
+  constructor(token) {
+    this.socket = new Socket(this.socketUrl, {
+      params: { token }
+    });
+  }
 
-socket.connect();
+  connect() {
+    this.socket.connect();
+  }
 
-export const channel = socket.channel("user:lobby", {});
+  joinChannel(channelId) {
+    this.channels.channelId = this.socket.channel(channelId, {});
+    return new Promise(resolve => {
+      this.channels.channelId.join().receive("ok", resp => {
+        resolve(resp);
+      });
+    });
+  }
+}
 
-channel.join().receive("ok", resp => {
-  console.log("Joined chat!", resp);
-});
+export function createSocket(token) {
+  Vue.prototype.$phoenix = new PhoenixSocket(token);
+  Vue.prototype.$phoenix.connect();
+}

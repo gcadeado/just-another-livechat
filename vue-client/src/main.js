@@ -42,10 +42,15 @@ Vue.use(VueAuth, {
   refreshData: { url: "/refresh", method: "GET", enabled: false, interval: 30 },
   fetchData: { url: "/user", method: "GET", enabled: true },
   parseUserData: function(data) {
-    console.log(data);
+    console.log(arguments, data);
     return data;
   },
-  logoutData: {url: '/logout', method: 'POST', redirect: '/login', makeRequest: false}
+  logoutData: {
+    url: "/logout",
+    method: "POST",
+    redirect: "/login",
+    makeRequest: false
+  }
 });
 // Register global utility filters.
 Object.keys(filters).forEach(key => {
