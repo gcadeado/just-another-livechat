@@ -1,0 +1,6 @@
+export const TOGGLE_DEVICE = "TOGGLE_DEVICE";
+export const TOGGLE_SIDEBAR = "TOGGLE_SIDEBAR";
+export const SET_LANGUAGE = "SET_LANGUAGE";
+
+export const APPEND_MESSAGE = "APPEND_MESSAGE";
+export const SEND_MESSAGE = "SEND_MESSAGE";

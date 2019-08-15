@@ -1,0 +1,23 @@
+.bubble {
+  border-radius: 10px 10px 10px 10px;
+  background-color: $white;
+  padding: 0.8rem;
+  word-wrap: break-word;
+  &.is-right {
+    border-radius: 10px 0px 10px 10px;
+    padding: 0.8rem 1.2rem 0.8rem 0.8rem;
+  }
+  &.is-left {
+    border-radius: 0 10px 10px 10px;
+    padding: 0.8rem 0.8rem 0.8rem 1.2rem;
+  }
+  // Colors
+  @each $name, $pair in $colors {
+    $color: nth($pair, 1);
+    $color-invert: nth($pair, 2);
+    &.is-#{$name} {
+      background-color: $color;
+      color: $color-invert;
+    }
+  }
+}

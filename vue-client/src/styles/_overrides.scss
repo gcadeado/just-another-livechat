@@ -1,0 +1,17 @@
+// Bulma classes and mixins overrides
+// You can create your own or use one of these themes: https://jenil.github.io/bulmaswatch/]
+
+.input {
+  &.is-rounded {
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+}
+
+.buttons {
+  .button {
+    &.is-circle {
+      border-radius: 290486px;
+    }
+  }
+}
