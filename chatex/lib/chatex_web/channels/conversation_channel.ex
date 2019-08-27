@@ -1,7 +1,7 @@
-defmodule ChatexWeb.UserChannel do
+defmodule ChatexWeb.ConversationChannel do
   use ChatexWeb, :channel
 
-  def join("user:" <> id, payload, socket) do
+  def join("conversation:" <> _id, payload, socket) do
     if authorized?(payload) do
       {:ok, socket}
     else

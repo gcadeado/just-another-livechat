@@ -59,6 +59,7 @@ defmodule Chatex.Accounts do
     case email_password_auth(email, password) do
       {:ok, user} ->
         Guardian.encode_and_sign(user)
+
       _ ->
         {:error, :unauthorized}
     end

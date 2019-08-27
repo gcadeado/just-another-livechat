@@ -1,8 +1,9 @@
-defmodule ChatexWeb.UserSocket do
+defmodule ChatexWeb.Socket do
   use Phoenix.Socket
 
   ## Channels
-  channel "user:lobby", ChatexWeb.UserChannel
+  channel "conversation:*", ChatexWeb.ConversationChannel
+  channel "user:*", ChatexWeb.UserChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After

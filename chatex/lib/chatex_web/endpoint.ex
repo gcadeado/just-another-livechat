@@ -3,7 +3,7 @@ defmodule ChatexWeb.Endpoint do
 
   plug CORSPlug
 
-  socket "/socket", ChatexWeb.UserSocket,
+  socket "/socket", ChatexWeb.Socket,
     websocket: true,
     longpoll: false
 

@@ -11,7 +11,7 @@ defmodule ChatexWeb.Router do
   end
 
   pipeline :api do
-    plug CORSPlug, [origin: "http://localhost:8080"]
+    plug CORSPlug, origin: "http://localhost:8080"
     plug :accepts, ["json"]
   end
 
@@ -28,6 +28,7 @@ defmodule ChatexWeb.Router do
   scope "/api/v1", ChatexWeb do
     pipe_through :api
     post "/login", UserController, :sign_in
+    post "/message", MessageController, :receive_message
   end
 
   scope "/api/v1", ChatexWeb do
